@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    
+    <h:head>
+        <title>JSFTableExample</title>
+        <h:outputStylesheet library="css" name="styles.css"/>         
+    </h:head>
+    
+
+    <h:body>
+        
+    <b>Tablica uprawnień</b>
+    <h:dataTable value="#{applicationController.tablicaUprawnien}" var="tablicaUprawnien">
+                <h:column>
+                #{tablicaUprawnien}
+                </h:column>              
+     </h:dataTable> 
+    
+    <b>Lista uprawnień</b>
+     <h:dataTable value="#{applicationController.listaUprawnien}" var="tabelaUprawnien">
+                <h:column>
+                #{tabelaUprawnien}    
+                </h:column>              
+     </h:dataTable>    
+    <b>Lista osób</b>
+    <h:dataTable value="#{mainWindowController.dataList}" var="tabelaDanych">
+                <h:column>
+                #{tabelaDanych.first}    
+                </h:column>
+                <h:column>
+                #{tabelaDanych.last}    
+                </h:column>  
+                <h:column>
+                #{tabelaDanych.age}    
+                </h:column>                
+     </h:dataTable>
+    
+    <h:dataTable value="#{mainWindowController.dataList}" var="tabelaDanych" bgcolor="LightGray" border="3"
+                 cellspacing="2" rows="7">
+            <f:facet name="caption">
+                <b>Dane systemowe</b>
+            </f:facet>         
+            <f:facet name="header">
+                <b>Lista zarejestrowanych osób</b>
+            </f:facet>
+            <f:facet name="footer">
+                <b>Koniec danych tabeli</b>
+            </f:facet>
+                <h:column>
+                #{tabelaDanych.first}    
+                </h:column>
+                <h:column>
+                #{tabelaDanych.last}    
+                </h:column>  
+                <h:column>
+                #{tabelaDanych.age}    
+                </h:column>       
+     </h:dataTable>
+    
+    <h:form>
+        <h:dataTable value="#{mainWindowController.dataList}" var="tabelaDanych" bgcolor="LightGray" border="3"
+                     cellspacing="2" rows="7" captionClass="warningMessage" footerClass="errorMessage" 
+                     rendered="#{mainWindowController.tableVisible}">
+            <f:facet name="caption">
+                <b>Dane systemowe</b>
+            </f:facet>            
+            <f:facet name="header">
+                <b>Lista zarejestrowanych osób</b>
+            </f:facet>
+            <f:facet name="footer">
+                <b>Koniec danych tabeli</b>
+            </f:facet>
+                <h:column>
+                #{tabelaDanych.first}    
+                </h:column>
+                <h:column>
+                #{tabelaDanych.last}    
+                </h:column>  
+                <h:column>
+                #{tabelaDanych.age}    
+                </h:column>       
+     </h:dataTable>
+    <h:commandButton value="Pokaż/ukryj tabelę" 
+                     action="#{mainWindowController.showHideTable}">
+    </h:commandButton>
+     </h:form>
+       <h:dataTable value="#{mainWindowController.dataList}" var="tabelaDanych" bgcolor="LightGray" border="3"
+                    cellspacing="2" rows="7" captionClass="warningMessage" footerClass="errorMessage" 
+                    columnClasses="commonColumnClass">
+            <f:facet name="caption">
+                <b>Dane systemowe</b>
+            </f:facet>            
+            <f:facet name="header">
+                <b>Lista zarejestrowanych osób</b>
+            </f:facet>
+            <f:facet name="footer">
+                <b>Koniec danych tabeli</b>
+            </f:facet>
+           <h:column headerClass="warningMessage">
+                    <f:facet name="header">Imię</f:facet>
+                    <f:facet name="footer">Podsumowanie</f:facet>
+                #{tabelaDanych.first}    
+                </h:column>
+                <h:column >
+                <f:facet name="header">Nazwisko</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>                    
+                #{tabelaDanych.last}    
+                </h:column>  
+                <h:column>
+                <f:facet name="header">Wiek</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>                    
+                #{tabelaDanych.age}    
+                </h:column>       
+     </h:dataTable>    
+    
+     <h:dataTable value="#{mainWindowController.dataList}" var="tabelaDanych" bgcolor="LightGray" border="3"
+                    cellspacing="2" rows="0" captionClass="warningMessage" footerClass="errorMessage" 
+                    columnClasses="oddColumn,evenColumn,nextColumn">
+            <f:facet name="caption">
+                <b>Dane systemowe</b>
+            </f:facet>            
+            <f:facet name="header">
+                <b>Lista zarejestrowanych osób</b>
+            </f:facet>
+            <f:facet name="footer">
+                <b>Koniec danych tabeli</b>
+            </f:facet>
+         
+               <h:column headerClass="warningMessage">
+                    <f:facet name="header">Imię</f:facet>
+                    <f:facet name="footer">Podsumowanie</f:facet>
+                #{tabelaDanych.first}    
+                </h:column>
+         
+                <h:column >
+                <f:facet name="header">Nazwisko</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>                    
+                #{tabelaDanych.last}    
+                </h:column>  
+         
+                <h:column>
+                <f:facet name="header">Wiek</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>                    
+                #{tabelaDanych.age}    
+                </h:column>       
+     </h:dataTable> 
+    
+    
+    <table border="=2" bgcolor="LightGray" cellspacing="2">
+        <b style="font-size: 12pt; color: red; font-weight: bold ">Dane systemowe</b>
+            <tr>
+                <td>LP</td>
+                <td>Imię</td> 
+                <td>Nazwisko</td>   
+                <td>Numer</td>                 
+            </tr>
+        <ui:repeat step="2" value="#{mainWindowController.dataList}" var="tabelaDanych"  varStatus="status">
+            <tr>
+                <td>#{status.index+1}</td>
+                <td>#{tabelaDanych.first}</td> 
+                <td>#{tabelaDanych.first}</td>   
+                <td>#{tabelaDanych.age}</td>                 
+            </tr>
+        </ui:repeat>
+     </table>
+    <b style="font-size: 12pt; color: red; font-weight: bold ">Koniec danych tabeli</b>
+    
+    <h:form id="edycjaTabeli">
+     <h:dataTable id="tabelaid" value="#{mainWindowController.dataList}" var="tabelaDanych" bgcolor="LightGray" border="3"
+                    cellspacing="2" rows="0" captionClass="warningMessage" footerClass="errorMessage" 
+                    rowClasses="oddColumn,evenColumn">
+            <f:facet name="caption">
+                <b>Dane systemowe</b>
+            </f:facet>            
+            <f:facet name="header">
+                <b>Lista zarejestrowanych osób + operacje na wierszach</b>
+            </f:facet>
+            <f:facet name="footer">
+                <b>Koniec danych tabeli</b>
+            </f:facet>
+         
+               
+               <h:column id="kolumna0" headerClass="warningMessage">
+                <f:facet name="header">Operacja</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>
+                <h:selectBooleanCheckbox id="editCheckBox" value="#{tabelaDanych.editable}" rendered="true" onclick="submit()"/>
+               </h:column>
+         
+               <h:column id="kolumna1" headerClass="warningMessage">
+                <f:facet name="header">Imię</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>
+                <h:inputText value="#{tabelaDanych.first}" rendered="#{tabelaDanych.editable}" />
+                <h:outputText value="#{tabelaDanych.first}" rendered="#{not tabelaDanych.editable}"/>  
+                </h:column>
+         
+                <h:column id="kolumna2">
+                <f:facet name="header">Nazwisko</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet> 
+                <h:inputText value="#{tabelaDanych.last}" rendered="#{tabelaDanych.editable}"/>
+                <h:outputText value="#{tabelaDanych.last}" rendered="#{not tabelaDanych.editable}"/>    
+                </h:column>  
+         
+                <h:column id="kolumna3">
+                <f:facet name="header">Wiek</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>  
+                <h:inputText value="#{tabelaDanych.age}" rendered="#{tabelaDanych.editable}"/>
+                <h:outputText value="#{tabelaDanych.age}" rendered="#{not tabelaDanych.editable}"/>                
+                </h:column>       
+     </h:dataTable> 
+        <h:commandButton value="#{msgs.saveForm}" action="#{mainWindowController.saveData}"/>   
+        
+    </h:form>
+    
+    <h:form id="edycjaTabeliAjax">
+     <h:dataTable id="tabelaidAjax" value="#{mainWindowController.dataList}" var="tabelaDanych" bgcolor="LightGray" border="3"
+                    cellspacing="2" rows="0" captionClass="warningMessage" footerClass="errorMessage" 
+                    columnClasses="oddColumn,evenColumn">
+            <f:facet name="caption">
+                <b>#{mainWindowController.ajaxViewId}</b>
+            </f:facet>            
+            <f:facet name="header">
+                <b>Lista zarejestrowanych osób + Ajax</b>
+            </f:facet>
+            <f:facet name="footer">
+                <b>Koniec danych tabeli</b>
+            </f:facet>
+         
+               
+               <h:column id="kolumna0" headerClass="warningMessage">
+                <f:facet name="header">Operacja</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>
+                <h:selectBooleanCheckbox id="editCheckBox1" value="#{tabelaDanych.editable}" rendered="true"> 
+                    <f:ajax listener="#{mainWindowController.visibleChange(tabelaDanych)}" render="@form" />
+                </h:selectBooleanCheckbox>
+                <h:commandButton id="addRow" value="+"> 
+                    <f:ajax listener="#{mainWindowController.addRow(tabelaDanych)}" render="@form" />        
+                </h:commandButton>  
+                <h:commandButton id="deleteRow" value="-"> 
+                    <f:ajax listener="#{mainWindowController.deleteRow(tabelaDanych)}" 
+                            execute="editCheckBox1" render="@form" />
+                </h:commandButton>  
+               </h:column>
+         
+               <h:column id="kolumna1" headerClass="warningMessage">
+                <f:facet name="header">Imię</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>
+                <h:inputText value="#{tabelaDanych.first}" rendered="#{tabelaDanych.editable}" />
+                <h:outputText value="#{tabelaDanych.first}" rendered="#{not tabelaDanych.editable}"/>  
+                </h:column>
+         
+                <h:column id="kolumna2">
+                <f:facet name="header">Nazwisko</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet> 
+                <h:inputText value="#{tabelaDanych.last}" rendered="#{tabelaDanych.editable}"/>
+                <h:outputText value="#{tabelaDanych.last}" rendered="#{not tabelaDanych.editable}"/>    
+                </h:column>  
+         
+                <h:column id="kolumna3">
+                <f:facet name="header">Wiek</f:facet>
+                <f:facet name="footer">Podsumowanie</f:facet>  
+                <h:inputText value="#{tabelaDanych.age}" rendered="#{tabelaDanych.editable}"/>
+                <h:outputText value="#{tabelaDanych.age}" rendered="#{not tabelaDanych.editable}"/>                
+                </h:column>   
+          
+     </h:dataTable> 
+        <h:commandButton value="#{msgs.saveForm}" action="#{mainWindowController.saveData}"/> 
+        <h:commandButton id="commandButtonAjax" value="#{msgs.saveForm} + AJAX" >
+                      <f:ajax listener="#{mainWindowController.saveData}" execute="tabelaidAjax" render="@form" />    
+        </h:commandButton> 
+    </h:form>
+    
+    </h:body>
+</html>
+

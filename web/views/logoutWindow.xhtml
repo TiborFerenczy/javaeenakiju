@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>#{msgs.logoutTitle}</title>
+        <h:outputStylesheet library="css" name="styles.css"/>   
+    </h:head>
+    <h:body>
+     <h:outputText value="#{msgs.logout}" styleClass="greetings"></h:outputText>  
+     <br />
+     <h:outputText value="Wersja aplikacji: &#160;&#160; #{applicationController.wersjaAplikacji}"   style="font-size: 14px; font-weight: bold"/>
+     <br />
+     <h:form>
+     <p><h:commandButton value="Kontynuacja" action="/faces/index?faces-redirect=true"/></p>
+     </h:form>
+    </h:body>
+</html>

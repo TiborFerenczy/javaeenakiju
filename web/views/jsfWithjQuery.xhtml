@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputScript library="javascript" name="jquery-1.11.2.min.js"/> 
+    </h:head>
+    <h:body>
+        Użycie JSF w połączeniu z jQuery
+        <h:button id="przycisk" value="Pokaż obraz" />
+        <br />
+        <h:graphicImage id="img"  url="/resources/images/logo.png" style="border: thin solid black; display: none"/>
+        <script>
+        $(document).
+          ready(
+          function(){$("img").slideDown();}
+          );
+        $("img").click(
+          function(){$("img").slideUp();}     
+            );
+        $("przycisk").click(
+          function(){$("img").slideDown();}     
+            );
+        </script>
+    </h:body>
+</html>
+

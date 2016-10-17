@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>      
+        <title>Strona startowa</title>
+    </h:head>
+    <h:body>
+        <h:form id="logonForm" rendered="#{logonController.czyWidoczny}">
+           <!--  <h:messages layout="table" errorClass="errorMessage"/> -->
+        <h:panelGrid columns="3" style="width: 45%; margin: 10px auto" border="5"> 
+            <h:outputText value="#{msgs.label_login}" style="font-size: 14px; font-weight: bold"/>
+            <h:inputText id="name" required="true" value="#{logonController.name}" maxlength="10" style="width: 45%; margin: 10px auto; font-weight: bold" />
+             <h:message for="name" errorClass="errorMessage" > wpisz nazwę uzytkownika </h:message> 
+            <h:outputText value="#{msgs.label_pass}" style="font-size: 14px; font-weight: bold"/>            
+            <h:inputText id="pass" required="true" value="#{logonController.password}" requiredMessage="#{msgs.pass_required}"/> 
+             <h:message for="pass" errorClass="errorMessage" > wpisz haslo </h:message>          
+            <h:commandButton value="#{msgs.buttonLogin} metoda komponentu (sprawdza dane)" action="#{logonController.login}"/>
+            <h:commandButton value="#{msgs.buttonLogin} views/mainWindow" action="views/mainWindow"/>   
+            <h:commandButton value="#{msgs.buttonLogin} main - reguła nawigacji" action="main"/>             
+            <h:commandButton value="#{msgs.buttonLogin} redirect - przekierowanie (widoczne w pasku adresu)" action="views/mainWindow?faces-redirect=true"/> 
+            <h:outputText value="#{applicationController.wersjaAplikacji}"   style="font-size: 14px; font-weight: bold"/>
+            <h:outputFormat value="#{msgs.logonErrorCount}"   style="font-size: 14px; font-weight: bold">
+                <f:param value="#{logonController.iloscBlednychLogowan}"/>
+            </h:outputFormat>  
+            <h:commandButton value="#{msgs.buttonLogin} main - WARUNKOWA reguła nawigacji" action="losowo"/>  
+            <h:inputText id="nextViewId" required="true" value="#{logonController.widok}" requiredMessage="#{msgs.pass_required}"/> 
+        </h:panelGrid>
+        
+        </h:form>    
+    </h:body>
+</html>
+

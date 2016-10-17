@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <h:head>
+        <title>#{msgs.welcomeTitle}</title>
+        <h:outputStylesheet library="css" name="styles.css"/>   
+    </h:head>
+    <h:body>
+    <h:outputText value="#{msgs.label_logged_user} #{logonController.name}" style="font-size: 14px; font-weight: bold"/>
+        <h:form id="mainWindow" >
+            <h:panelGroup id="panelGroup" >
+                <h:outputText value="#{msgs.welcome} " styleClass="greetings"></h:outputText>
+            </h:panelGroup>
+            
+            <h:commandButton value="#{msgs.buttonLogout}" action="#{logonController.logout}"/>
+
+        <p>Nazwa przegladarki:</p>
+            <p>#{header['User-Agent']}</p><!-- odwołanie do listy w nagłówku HTTP -->
+            <p>#{header['Host']}</p><!-- odwołanie do listy w nagłówku HTTP -->
+            <br />
+            
+        <h:link outcome="jsfExample">JSF Znaczniki standardowe przykłady</h:link> 
+        <br />
+        <h:link outcome="jsfTableExample">JSF Tabele siemanko przykłady</h:link>  
+        <br />
+        <h:link outcome="jsfWithjQuery">Przykład JSF + jQuery</h:link>  
+        
+        </h:form>   
+    
+    Wersja z komponentu aplikacji <br/>
+    <h:outputText id="textWersja" value="#{applicationController.wersjaAplikacji}"   style="font-size: 14px; font-weight: bold"/> <br/>
+    Wersja z komponentu ControllerDefinedXML - po wtrzyknięciu <br/>
+    <h:outputText id="textWersjaManagedProperty" value="#{controllerDefinedXML.wersjaAplikacji}"   style="font-size: 14px; font-weight: bold"/> <br/>
+    
+    #{logonController.dodaj_wyrazy("value1", "value2")} <br/>
+    #{logonController.dodaj_liczby(10, 20)} <br/>
+    
+    <h:outputText value="#{logonController.dodaj_wyrazy('value1', 'value2')}"   style="font-size: 14px; font-weight: bold"/>  <br/>
+    <h:outputText value="#{logonController.dodaj_liczby(10, 20)}"   style="font-size: 14px; font-weight: bold"/>  <br/>
+    
+    <h:outputText value="#{logonController.dodaj_wyrazy(applicationController.wersjaAplikacji, ' --Sumowanie Pól')}"   style="font-size: 14px; font-weight: bold"/>  <br/>
+    </h:body>
+</html>

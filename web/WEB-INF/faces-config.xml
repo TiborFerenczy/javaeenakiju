@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+<application>
+<resource-bundle>
+<base-name>messages</base-name>
+<var>msgs</var>
+</resource-bundle>
+<locale-config>
+    <default-locale>pl</default-locale>
+    <supported-locale>en</supported-locale>
+    <supported-locale>de</supported-locale>
+    <supported-locale>sq</supported-locale>
+</locale-config>
+<!--
+<managed-bean eager="true">  
+    <description>Dane aplikacji</description>
+    <managed-bean-name>applicationController</managed-bean-name>
+    <managed-bean-class>pl.webapplicationjsf.controllers.applicationController</managed-bean-class>
+    <managed-bean-scope>application</managed-bean-scope>
+   <managed-property>
+	<property-name>listaUprawnien</property-name>
+	<list-entries>
+         <value-class>java.lang.String</value-class>
+         <value>admistrator</value>
+         <value>użytkownik</value>
+         <value>przeglądający</value>
+         <value>serwis</value>
+        </list-entries>    
+   </managed-property>
+</managed-bean>
+-->
+<navigation-rule>
+        <description>Nawigacja ze strony index.xhtml</description>
+        <display-name>Reguła nawigacji</display-name>
+	<navigation-case>
+		<from-outcome>logout</from-outcome>
+		<to-view-id>/views/logoutWindow</to-view-id>                
+	</navigation-case> 
+	<navigation-case>
+		<from-outcome>main</from-outcome>
+		<to-view-id>/views/mainWindow.xhtml</to-view-id>
+        </navigation-case> 
+	<navigation-case>
+		<from-outcome>error</from-outcome>
+		<to-view-id>/views/error.xhtml</to-view-id>
+                <!--<redirect/>-->
+	</navigation-case>   
+	<navigation-case>
+		<from-outcome>losowo</from-outcome>
+                <if>#{logonController.widok==1}</if>
+		<to-view-id>/views/jsfExample.xhtml</to-view-id>
+                <!--<redirect/>-->
+	</navigation-case>  
+        <navigation-case>
+                <from-outcome>losowo</from-outcome>
+                <if>#{logonController.widok==2}</if>
+		<to-view-id>/views/jsfWithjQuery.xhtml</to-view-id>
+                <!--<redirect/>-->
+	</navigation-case>       
+        
+	<navigation-case>
+		<from-outcome>losowo</from-outcome>
+                <if>#{logonController.widok>2}</if>
+		<to-view-id>/views/error.xhtml</to-view-id>
+                 <!--<redirect/>-->
+	</navigation-case>               
+	<navigation-case>
+		<from-outcome>jsfExample</from-outcome>
+		<to-view-id>/views/jsfExample.xhtml</to-view-id>
+                <!--<redirect/>-->
+	</navigation-case>       
+        <navigation-case>
+		<from-outcome>jsfTableExample</from-outcome>
+		<to-view-id>/views/jsfTableExample.xhtml</to-view-id>
+	</navigation-case>   
+        <navigation-case>
+		<from-outcome>jsfParametersExample</from-outcome>
+		<to-view-id>/views/jsfParametersExample.xhtml</to-view-id>
+	</navigation-case>          
+        
+</navigation-rule>
+</application>
+    <managed-bean>
+        <description>Komponent zdefiniowany w faces-config.xml</description>
+        <managed-bean-name>controllerDefinedXML</managed-bean-name>
+        <managed-bean-class>pl.webapplicationjsf.controllers.ControllerDefinedXML</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <property-name>applicationController</property-name>
+            <value>#{applicationController}</value>
+        </managed-property>
+    </managed-bean>
+</faces-config>

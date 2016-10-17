@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:metadata>
+        <f:viewParam name="userNameParamTemp" value="#{mainWindowController.userNameTemp}"/>  
+        <f:viewParam name="identyfikator"/>  
+        <f:viewParam name="count"/>        
+    </f:metadata>    
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Strona z parametrami przekazanymi żądaniem GET z komponentu link:
+        Ze strony jsfExample.xhtml <br />
+    <!--
+    <h:outputText value="#{userNameParamTemp} - jako parametr" /> <br />
+    -->
+    <h:outputText value="#{mainWindowController.userNameTemp} - z komponentu" /> <br />   
+    <h:outputText value="#{identyfikator}" /> <br />
+    <h:outputText value="#{count}" /> <br />
+
+    <br />
+    </h:body>
+</html>
+

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets">
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=windows-1250"/>
+            <h:outputScript library="javascript" name="commonFunctions.js"/> 
+            <h:outputStylesheet library="css" name="styles.css"/>            
+        </h:head>
+        <!-- Przykłady inputText, outputText, commandButton, graphicsImage -->
+        <h:body>
+            
+           
+            <h:form id="formularz1">            
+                <h:panelGrid columns="2" bgcolor="white" border="1">
+
+               <!-- Pola tekstowe wyjściowe z łączeniem ciągów znaków -->     
+               <h:outputFormat value="Witaj {0}!.">				
+                    <f:param value="użytkowniku" />
+                </h:outputFormat>
+                    
+                <!-- Pola tekstowe wyjściowe z łączeniem ciągów znaków i zawartości pól -->      
+                <h:outputFormat value="Witaj {0}{1}">				
+                    <f:param value="użytkowniku: " />
+                    <f:param value="#{logonController.name}" />
+                </h:outputFormat>
+                
+                <!-- Zmiana wartości pola za pomocą atrybutu i akcji -->     
+                <h:commandButton id="submitPolski" value="Język polski"
+                                 actionListener="#{logonController.languageChange}" action="jsfExample"> 
+                <f:attribute name="jezyk" value="Polski" />				
+                </h:commandButton>
+                
+                <h:commandButton id="submitAngielski" value="Język angielski"
+                actionListener="#{logonController.languageChange}" action="jsfExample"> 
+                <f:attribute name="jezyk" value="Angielski" />				
+                </h:commandButton>     
+               
+               <!-- Pola tekstowe z dodatkowymi opcjami -->       
+               <h:inputText value="#{logonController.name}" readonly="true"/>
+               <h:inputSecret value="#{logonController.password}" redisplay="true"/>
+               
+               <!-- Pole tekstowe -->  
+               <h:inputTextarea rows="5"/>
+               <h:inputTextarea value="#{mainWindowController.dataListAsString}" rows="2" cols="15"/>
+               
+               <!-- Wyświetlanie komunikatów z zastosowaniem styli -->  
+               <h:outputText value="Ilosc błędnych logowan: #{logonController.iloscBlednychLogowan}" styleClass="warningMessage"/>
+
+               <h:outputText value="Ilosc błędnych logowan: #{logonController.iloscBlednychLogowan}" style="color: red; border: thin solid blue"/>
+
+               
+               <h:graphicImage url="/resources/images/logo.png" style="border: thin solid black"/>
+               <h:graphicImage library="images" name="logo.png" style="border: thin solid black"/>
+
+                <h:inputText value="#{logonController.kod}">
+                    <f:attribute name="separator" value="*"/>
+                </h:inputText>
+                
+                <h:inputText value="#{logonController.kod}">
+                    <f:attribute name="separator" value="*"/>
+                </h:inputText>
+            </h:panelGrid>
+   
+            </h:form>
+
+            <h:outputText value="#{logonController.jezyk}"/>
+            <!-- przykład JavaScript -->
+            <h:form id="JavaScriptExample">
+                <h:panelGrid columns="2">
+                    <h:inputText id="password1" value="#{mainWindowController.password1}"/>
+                    <h:inputText id="password2" value="#{mainWindowController.password2}"/>
+                <h:commandButton value="Weryfikacja" type="button" onclick="checkPassword(this.form)"/>
+                </h:panelGrid>
+            </h:form>
+            <!-- Przykłady linków i przycisków -->
+            <h:form>
+                <h:panelGrid columns="2" border="1">
+                    
+                 <h:commandLink>Prosty link</h:commandLink>   
+                 
+                 <!-- Generowany przez metodę komponentu tylko tekst linka -->
+                 
+                 <h:commandLink style="font-style: italic">
+                        #{mainWindowController.linkTableExample}
+                 </h:commandLink>
+                 
+                 <!-- Generowany przez metodę komponentu jako obraz tylko tekst linka -->
+                 <h:commandLink>
+                    #{mainWindowController.linkTableExample}
+                    <h:graphicImage library="images" name="logo.png" style="border: thin solid red"/>
+                 </h:commandLink>  
+                 
+                 <!-- Wywolanie metody komponentu na akcji widok docelowy generowany przez metodę komponentu -->
+                 <h:commandLink action="#{mainWindowController.navigateToJsfTableExample}" >Prosty link (akcja) Action</h:commandLink> 
+                 
+                 <!-- Wywolanie metody komponentu na akcji widok docelowy i opis linka generowany przez metodę komponentu-->
+                 <h:commandLink action="#{mainWindowController.navigateToJsfTableExample}">
+                    #{mainWindowController.linkTableExample} Action
+                    <h:graphicImage library="images" name="logo.png" style="border: thin solid red"/>
+                 </h:commandLink> 
+                 
+                 <h:link outcome="#{mainWindowController.linkTableExample}">Prosty link wewnętrzny</h:link> 
+                 
+                 <h:link outcome="#{mainWindowController.linkTableExample}">
+                    #{mainWindowController.linkTableExample} Link
+                    <h:graphicImage library="images" name="logo.png" style="border: thin solid red"/>
+                 </h:link> 
+                 
+                 <!-- Jednoczesna obsługa zdarzenia przycisku myszy na obrazie i przekierowania do widoku -->
+                 <h:commandButton value="Wybierz punkt" image="/resources/images/logo.png"
+                    actionListener="#{imagePositionClick.processActionEvent}"
+                    action="#{imagePositionClick.navigate}">
+                 </h:commandButton>
+                 
+                 <!-- Wyświetlenie współrzędnych kursora na obrazie-->
+                 <h:outputText value="#{imagePositionClick.x}" style="color: red; border: thin solid blue"/>
+                 <h:outputText value="#{imagePositionClick.y}" style="color: red; border: thin solid blue"/>
+                 
+                 
+                 
+                 <h:link value="Przekaż parametr żądania" includeViewParams="true"
+                         outcome="#{mainWindowController.linkParametersExample}">
+                     <f:param name="userNameParamTemp" value="Nazwa uzytkownika jako parametr"/>
+                     <f:param name="identyfikator" value="9999999999"/>
+                     <f:param name="count" value="555555"/>
+                 </h:link>
+                 <h:outputLink value="http://www.google.pl">
+                     <h:outputText value="Strona zewnętrzna + parametry"/>
+                     <f:param name="q" value="uniwersytet śląski"/>
+                </h:outputLink>
+                 <h:outputLink value="#formularz4" title="Przejdź do formularza numer 3">
+                    <h2>Formularz 1</h2>
+                </h:outputLink>
+                </h:panelGrid>
+            </h:form>
+            
+            <h:form id="formularz4">
+                <h:panelGrid columns="1" border="2" columnClasses="commonColumnClass">
+                <h:selectBooleanCheckbox  value="#{logonController.czyAdministrator}">
+                    Czy użytkownik jest administratorem
+                </h:selectBooleanCheckbox>   
+                <h:selectBooleanCheckbox  value="#{logonController.czyAdministrator}" onchange="submit()" >
+                    Czy użytkownik jest administratorem + zdarzenie
+                </h:selectBooleanCheckbox>                      
+                
+                <h:selectManyCheckbox value="#{logonController.userTypes}">
+                    Zaznacz dostępne role wybranego użytkownika - ManyCheckBox
+                    <f:selectItem itemValue="1" itemLabel="Użytkownik"/>
+                    <f:selectItem itemValue="2" itemLabel="Administrator"/>
+                    <f:selectItem itemValue="3" itemLabel="Użytkownik zaawansowany"/>
+                </h:selectManyCheckbox>  
+                <h:selectOneRadio value="#{logonController.userRole}"> 
+                    #{msgs.chooseLabel} RadioButton
+                    <f:selectItem itemValue="1" itemLabel="Pracownik"/>
+                    <f:selectItem itemValue="2" itemLabel="Kierownik"/>
+                    <f:selectItem itemValue="3" itemLabel="Dyrektor"/>
+                </h:selectOneRadio>                     
+               <!-- 
+                <h:selectManyCheckbox value="#{logonController.userTypes}">
+                    Zaznacz dostępne role wybranego użytkownika - ManyCheckBox + f:selectItems
+                    <f:selectItems value="#{logonController.userTypesItems}" var="rolesItems"/>
+                </h:selectManyCheckbox>  
+                <h:selectOneRadio value="#{logonController.userRole}">
+                    #{msgs.chooseLabel} RadioButton + f:selectItems
+                    <f:selectItems value="#{logonController.userRolesItems}" var="rolesItems"/>
+                </h:selectOneRadio>                     
+                -->   
+                
+                <h:selectOneListbox value="#{logonController.rok}" size="2">
+                    <f:selectItem itemValue="2011" itemLabel="2011"/>
+                    <f:selectItem itemValue="2012" itemLabel="2012"/>
+                    <f:selectItem itemValue="2013" itemLabel="2013"/>                    
+                </h:selectOneListbox>
+                
+                <h:selectManyListbox value="#{logonController.kolor}" size="5">
+                    <f:selectItem itemValue="Biały" itemLabel="Biały"/>
+                    <f:selectItem itemValue="Czarny" itemLabel="Czarny"/>
+                    <f:selectItem itemValue="Czerwony" itemLabel="Czerwony"/>
+                    <f:selectItem itemValue="Zielony" itemLabel="Zielony"/>
+                    <f:selectItem itemValue="Żółty" itemLabel="Żółty"/>                    
+                </h:selectManyListbox>
+                
+                <h:selectOneMenu >
+                    <f:selectItem itemValue="2011" itemLabel="2011"/>
+                    <f:selectItem itemValue="2012" itemLabel="2012"/>
+                    <f:selectItem itemValue="2013" itemLabel="2013"/>                    
+                </h:selectOneMenu>
+                
+                <h:selectManyMenu  >
+                    <f:selectItem itemValue="Biały" itemLabel="Biały"/>
+                    <f:selectItem itemValue="Czarny" itemLabel="Czarny"/>
+                    <f:selectItem itemValue="Czerwony" itemLabel="Czerwony"/>
+                    <f:selectItem itemValue="Zielony" itemLabel="Zielony"/>
+                    <f:selectItem itemValue="Żółty" itemLabel="Żółty"/>                    
+                </h:selectManyMenu>
+                
+                <h:selectManyListbox value="#{logonController.wybraneKategorie}" size="5">
+                    <f:selectItems value="#{logonController.kategorieItems}"/>
+                </h:selectManyListbox>                
+                
+                <h:commandButton type="submit" value="Wyślij dane"/> 
+            </h:panelGrid>
+            </h:form>
+            
+            <h:form id="messagesForm">
+
+            <h:panelGrid columns="3" style="width: 45%; margin: 10px auto" border="5"> 
+            <h:outputText value="#{msgs.label_login}" style="font-size: 14px; font-weight: bold"/>
+            <h:inputText id="pole_name" required="true" value="#{logonController.name}" maxlength="5" style="width: 45%; margin: 10px auto; font-weight: bold" />
+            <h:message for="pole_name" errorClass="errorMessage" />
+            <h:outputText value="#{msgs.label_pass}" style="font-size: 14px; font-weight: bold"/>            
+            <h:inputText id="pole_pass" required="true" value="#{logonController.password}" requiredMessage="#{msgs.pass_required}"/> 
+            <h:message for="pole_pass" errorClass="errorMessage" />
+            <h:inputText id="pole_number" required="true" value="#{logonController.liczba}"  /> 
+            <h:message for="pole_number" errorClass="errorMessage" />
+            <h:commandButton value="Zapisz" action="#{logonController.save}"/>
+        </h:panelGrid>
+                <h:messages layout="table" errorClass="errorMessage" warnClass="warningMessage"/>
+        </h:form>  
+        </h:body>
+</html>
+

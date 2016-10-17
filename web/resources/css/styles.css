@@ -1,0 +1,46 @@
+/* 
+    Document   : styles.css
+    Created on : 2013-02-01, 20:03:16
+    Author     : mariusz
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.root 
+{ 
+display: block;
+}
+.errorMessage{
+font-style: italic;
+color: red;
+}
+.warningMessage{
+font-style: normal;
+color: green;    
+}
+.commonColumnClass
+{
+background-color: lightblue;
+border-color: red;
+font-style: normal;
+color: green;
+}
+.oddColumn {
+height: 25px;
+text-align: center;
+background: MediumTurquoise;
+}
+.evenColumn {
+text-align: center;
+background: PowderBlue;
+}
+.nextColumn {
+text-align: center;
+background:activecaption;
+}
+
+.greetings
+{
+height: 25px;
+background-color: lightgreen;
+}
